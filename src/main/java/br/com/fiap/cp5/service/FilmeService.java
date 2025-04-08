@@ -28,6 +28,10 @@ public class FilmeService {
         }
     }
 
+    public void deleteFilme(Long id){
+        filmeRepository.deleteById(id);
+    }
+
     public Filme requestToFilme(FilmeRequest filmeRequest){
         Filme filme = new Filme();
         filme.setTitulo(filmeRequest.getTitulo());
