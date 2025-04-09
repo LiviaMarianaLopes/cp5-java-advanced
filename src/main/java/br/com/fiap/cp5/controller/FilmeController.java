@@ -9,6 +9,8 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.servlet.ModelAndView;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import java.util.List;
 
@@ -30,36 +32,42 @@ public class FilmeController {
             return "filmeCadastro";
         }
         filmeService.createFilme(filmeRequest);
-        return listFilme(model);
+        return "redirect:/filme/lista";
     }
 
     @GetMapping("/lista")
-    public String listFilme(Model model){
+    public ModelAndView listFilme(){
+        ModelAndView mv = new ModelAndView();
         List<Filme> filmes = filmeService.searchFilme();
-        model.addAttribute("listaFilmes", filmes);
-        return "filmeLista";
+        mv.addObject("listaFilmes", filmes);
+        return mv;
     }
 
     @GetMapping("/edicao/{id}")
-    public String filmeUpdate(@PathVariable Long id, Model model) {
+    public ModelAndView filmeUpdate(@PathVariable Long id) {
         Filme filme = filmeService.searchFilme(id);
         if(filme == null) {
-            return listFilme(model);
+            return listFilme();
         }
-        model.addAttribute("idFilme", id);
-        model.addAttribute("livro", filmeService.filmeToRequest(filme));
-        return "filmeEdicao";
+        ModelAndView mv = new ModelAndView("filmeEdicao");
+        mv.addObject("idFilme", id);
+        mv.addObject("filme", filmeService.filmeToRequest(filme));
+        return mv;
     }
 
     @PostMapping("/editar/{id}")
-    public String updateFilme(@PathVariable Long id, @Valid @ModelAttribute FilmeRequest filmeRequest, Model model){
+    public String updateFilme(@PathVariable Long id, @Valid @ModelAttribute FilmeRequest filmeRequest, BindingResult result, RedirectAttributes redirectAttributes){
+        if(result.hasErrors()){
+            redirectAttributes.addFlashAttribute("errors", result.getAllErrors());
+            return "redirect:/filme/edicao/" + id;
+        }
         filmeService.updateFilme(id, filmeRequest);
-        return listFilme(model);
+        return "redirect:/filme/lista";
     }
 
     @GetMapping("/deletar/{id}")
-    public String deleteFilme(@PathVariable Long id, Model model){
+    public String deleteFilme(@PathVariable Long id){
         filmeService.deleteFilme(id);
-        return listFilme(model);
+        return "redirect:/filme/lista";
     }
 }
