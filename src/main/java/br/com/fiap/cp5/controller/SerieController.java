@@ -27,12 +27,19 @@ public class SerieController {
     }
 
     @PostMapping("/cadastrar")
-    public String cadastrarSerie(@Valid @ModelAttribute SerieRequest serieRequest, BindingResult result) {
+    public ModelAndView cadastrarSerie(@Valid @ModelAttribute SerieRequest serieRequest, BindingResult result) {
+        ModelAndView modelAndView = new ModelAndView();
+
         if(result.hasErrors()) {
-            return "serieCadastro";
+            modelAndView.setViewName("serieCadastro");
+            modelAndView.addObject("serie", new Serie());
+            modelAndView.addObject("errors", result.getAllErrors());
+            return modelAndView;
         }
         serieService.salvarSerie(serieRequest);
-        return "redirect:/serie/lista";
+        modelAndView.setViewName("redirect:/serie/lista");
+
+        return modelAndView;
     }
 
     @GetMapping("/lista")
