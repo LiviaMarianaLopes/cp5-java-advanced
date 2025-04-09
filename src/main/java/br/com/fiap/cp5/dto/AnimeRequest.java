@@ -1,18 +1,21 @@
 package br.com.fiap.cp5.dto;
 
 import br.com.fiap.cp5.model.Categoria;
+import jakarta.validation.constraints.Min;
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.NotNull;
+import jakarta.validation.constraints.Size;
 import lombok.Data;
 
 @Data
 public class AnimeRequest {
-    @NotBlank(message = "O título não pode estar vazio.")
+    @NotBlank(message = "{titulo.not.blank}")
     private String titulo;
-    @NotBlank(message = "O estudio não pode estar vazio")
+    @NotBlank(message = "{estudio.not.blank}")
     private String estudio;
-    @NotBlank(message = "Quantidade de episódio não pode estar vazio.")
+    @NotNull(message = "{episodios.not.blank}")
+    @Min(value = 1,message = "{episodios.quantity}")
     private int quantEpisodios;
-    @NotNull(message = "O título deve ter uma categoria")
+    @NotNull(message = "{categoria.not.null}")
     private Categoria categoria;
 }
