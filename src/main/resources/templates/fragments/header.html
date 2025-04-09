@@ -6,11 +6,15 @@
 </head>
 <body>
 <div th:fragment="header" class="header">
-    <h1><span th:text="Watch List"></span></h1>
+    <h1><span th:text="${#messages.msg('app.name')}"></span></h1>
     <nav class="navbar navbar-expand-lg bg-light">
         <div class="navbar-nav">
             <a class="nav-item nav-link" th:href="@{/anime/list}"><span th:text="Animes"></span></a>
             <a class="nav-item nav-link" th:href="@{/filme/lista}"><span th:text="Filmes"></span></a>
+            <a class="nav-item nav-link" th:href="@{/serie/cadastro}"><span th:text="${#messages.msg('serie.menu.cadastro')}"></span></a>
+            <a class="nav-item nav-link" th:href="@{/serie/lista}"><span th:text="${#messages.msg('serie.menu.lista')}"></span></a>
+            <a class="nav-item nav-link" href="?lang=pt_BR">BR</a>
+            <a class="nav-item nav-link" href="?lang=en">EN</a>
         </div>
     </nav>
 </div>
