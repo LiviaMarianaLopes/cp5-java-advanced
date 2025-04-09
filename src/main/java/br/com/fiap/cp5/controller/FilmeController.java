@@ -27,12 +27,18 @@ public class FilmeController {
     }
 
     @PostMapping("/cadastrar")
-    public String registerFilme(@Valid FilmeRequest filmeRequest, BindingResult result, Model model){
+    public ModelAndView registerFilme(@Valid FilmeRequest filmeRequest, BindingResult result){
+        ModelAndView modelAndView = new ModelAndView();
         if(result.hasErrors()){
-            return "filmeCadastro";
+            modelAndView.setViewName("filmeCadastro");
+            modelAndView.addObject("filme", new Filme());
+            modelAndView.addObject("errors", result.getAllErrors());
+            return modelAndView;
         }
         filmeService.createFilme(filmeRequest);
-        return "redirect:/filme/lista";
+        modelAndView.setViewName("redirect:/filme/lista");
+
+        return modelAndView;
     }
 
     @GetMapping("/lista")
