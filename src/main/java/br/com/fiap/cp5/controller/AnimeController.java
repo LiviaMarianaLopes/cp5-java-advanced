@@ -21,13 +21,13 @@ public class AnimeController {
     @Autowired
     AnimeService animeService;
 
-    @GetMapping("/registry")
+    @GetMapping("/register")
     public String animeRegistry(Model model){
         model.addAttribute("animeRequest", new AnimeRequest());
         return "animeRegistry";
     }
 
-    @PostMapping("/register")
+    @PostMapping("/registry")
     public ModelAndView registerAnime(@Valid @ModelAttribute AnimeRequest animeRequest, BindingResult result){
        ModelAndView mv = new ModelAndView();
         if (result.hasErrors()){
