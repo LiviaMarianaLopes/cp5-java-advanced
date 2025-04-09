@@ -1,10 +1,52 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" xmlns:th="https://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
-    <title>Title</title>
+    <title>Lista de Filmes</title>
+    <link th:href="@{/webjars/bootstrap/5.3.3/css/bootstrap.min.css}" rel="stylesheet" />
+    <script th:src="@{/webjars/bootstrap/5.3.3/js/bootstrap.bundle.min.js}" defer></script>
+    <link th:href="@{/css/style.css}" rel="stylesheet" />
+    <script th:src="@{/js/script.js}" defer></script>
 </head>
 <body>
-
+<div th:replace="~{fragments/header :: header}"></div>
+<div th:class="main_content">
+    <h2><span th:text="${#messages.msg('filme.lista.titulo')}"></span></h2>
+    <br>
+    <table>
+        <thead>
+        <tr>
+            <th><span th:text="${#messages.msg('lista.th.id')}"></span> </th>
+            <th><span th:text="${#messages.msg('lista.th.titulo')}"></span> </th>
+            <th><span th:text="${#messages.msg('lista.th.acoes')}"></span> </th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr th:each="filme : ${listaFilmes}">
+            <td th:text="${filme.id}">ID</td>
+            <td th:text="${filme.titulo}">Título</td>
+            <td>
+                <button th:attr="onclick=|showModal('infoModal' + ${filme.id})|"><span th:text="${#messages.msg('lista.modal.detalhes')}"></span></button>
+            </td>
+        </tr>
+        </tbody>
+    </table>
+    <div th:each="filme : ${listaFilmes}" th:attr="id=${'infoModal' + filme.id}" style="display: none;">
+        <br>
+        <h3></h3>
+        <p>
+            <strong><span th:text="${#messages.msg('attr.id')}"></span>:</strong> <span th:text="${filme.id}"></span><br>
+            <strong><span th:text="${#messages.msg('attr.titulo')}"></span>:</strong> <span th:text="${filme.titulo}"></span><br>
+            <strong><span th:text="${#messages.msg('attr.diretor')}"></span>:</strong> <span th:text="${filme.diretor}"></span><br>
+            <strong><span th:text="${#messages.msg('attr.duracao')}"></span>:</strong> <span th:text="${filme.duracao}"></span><br>
+            <strong><span th:text="${#messages.msg('attr.categoria')}"></span>:</strong> <span th:text="${filme.categoria.descricao}"></span><br>
+            <a th:href="@{/filme/edicao/{id}(id = ${filme.id})}"><span th:text="${#messages.msg('lista.modal.action.editar')}"></span></a>
+            <span> | </span>
+            <a th:href="@{/filme/deletar/{id}(id = ${filme.id})}"><span th:text="${#messages.msg('lista.modal.action.deletar')}"></span></a>
+        </p>
+        <button th:attr="onclick=|hideModal('infoModal' + ${filme.id})|"><span th:text="${#messages.msg('lista.modal.action.fechar')}"></span></button>
+    </div>
+</div>
+<div th:replace="~{fragments/footer :: footer}"></div>
 </body>
 </html>

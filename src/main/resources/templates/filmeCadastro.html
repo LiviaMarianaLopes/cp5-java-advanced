@@ -1,10 +1,47 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" xmlns:th="https://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
-    <title>Title</title>
+    <title>Cadastro de Filme</title>
+    <link th:href="@{/webjars/bootstrap/5.3.3/css/bootstrap.min.css}" rel="stylesheet" />
+    <script th:src="@{/webjars/bootstrap/5.3.3/js/bootstrap.bundle.min.js}" defer></script>
+    <link th:href="@{/css/style.css}" rel="stylesheet" />
 </head>
 <body>
-
+    <div th:replace="~{fragments/header :: header}"></div>
+        <div th:class="main_content">
+            <form method="post" th:action="@{cadastrar}" th:object="${filmeRequest}">
+                <h2><span th:text="${#messages.msg('filme.cadastro.titulo')}"></span></h2>
+                <br>
+                <div>
+                    <label for="titulo"><span th:text="${#messages.msg('attr.titulo')}"></span>:</label><input type="text" id="titulo" th:field="*{titulo}">
+                </div>
+                <div>
+                    <label for="diretor"><span th:text="${#messages.msg('attr.diretor')}"></span>:</label><input type="text" id="diretor" th:field="*{diretor}">
+                </div>
+                <div>
+                    <label for="duracao"><span th:text="${#messages.msg('attr.duracao')}"></span>:</label><input type="text" id="duracao" th:field="*{duracao}">
+                </div>
+                <div>
+                    <label for="categoria"><span th:text="${#messages.msg('attr.categoria')}"></span>:</label>
+                    <select id="categoria" th:field="*{categoria}">
+                        <option name="ROMANCE" value="ROMANCE"><span th:text="${#messages.msg('attr.categoria.ROMANCE')}"></span></option>
+                        <option name="COMEDIA" value="COMEDIA"><span th:text="${#messages.msg('attr.categoria.COMEDIA')}"></span></option>
+                        <option name="ACAO" value="ACAO"><span th:text="${#messages.msg('attr.categoria.ACAO')}"></span></option>
+                        <option name="TERROR" value="TERROR"><span th:text="${#messages.msg('attr.categoria.TERROR')}"></span></option>
+                        <option name="FANTASIA" value="FANTASIA"><span th:text="${#messages.msg('attr.categoria.FANTASIA')}"></span></option>
+                    </select>
+                </div>
+                <div>
+                    <button type="submit"><span th:text="${#messages.msg('cadastro.cadastro')}"></span></button>
+                </div>
+            </form>
+        </div>
+        <div th:if="${errors}">
+            <ul>
+                <li th:each="error : ${errors}" th:text="${error.defaultMessage}"></li>
+            </ul>
+        </div>
+    <div th:replace="~{fragments/footer :: footer}"></div>
 </body>
 </html>
