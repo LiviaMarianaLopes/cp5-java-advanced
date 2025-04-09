@@ -28,12 +28,17 @@ public class AnimeController {
     }
 
     @PostMapping("/register")
-    public String registerAnime(@Valid AnimeRequest animeRequest, BindingResult result){
+    public ModelAndView registerAnime(@Valid @ModelAttribute AnimeRequest animeRequest, BindingResult result){
+       ModelAndView mv = new ModelAndView();
         if (result.hasErrors()){
-            return "animeRegistry";
+            mv.setViewName("animeRegistry");
+            mv.addObject("anime", new Anime());
+            mv.addObject("errors", result.getAllErrors());
+            return mv;
         }
         animeService.createAnime(animeRequest);
-        return "redirect:/anime/list";
+        mv.setViewName("redirect:/anime/list");
+        return mv;
     }
 
     @GetMapping("/list")
