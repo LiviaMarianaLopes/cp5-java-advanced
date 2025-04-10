@@ -22,7 +22,7 @@
             </tr>
             </thead>
             <tbody>
-            <tr th:each="anime : ${animeList}">
+            <tr th:each="anime : ${animesList}">
                 <td th:text="${anime.id}"></td>
                 <td th:text="${anime.titulo}"></td>
                 <td>
@@ -31,15 +31,15 @@
             </tr>
             </tbody>
         </table>
-        <div th:each="anime : ${animeList}" th:attr="id=${'infoModal' + anime.id}" style="display: none;">
+        <div th:each="anime : ${animesList}" th:attr="id=${'infoModal' + anime.id}" style="display: none;">
             <br>
             <p>
                 <strong><span th:text="${#messages.msg('attr.id')}"></span>:</strong> <span th:text="${anime.id}"></span><br>
                 <strong><span th:text="${#messages.msg('attr.titulo')}"></span>:</strong> <span th:text="${anime.titulo}"></span><br>
                 <strong><span th:text="${#messages.msg('attr.estudio')}"></span>:</strong> <span th:text="${anime.estudio}"></span><br>
-                <strong><span th:text="${#messages.msg('attr.episodios')}"></span>:</strong> <span th:text="${anime.episodios}"></span><br>
+                <strong><span th:text="${#messages.msg('attr.episodios')}"></span>:</strong> <span th:text="${anime.quantEpisodios}"></span><br>
                 <strong><span th:text="${#messages.msg('attr.categoria')}"></span>:</strong> <span th:text="${anime.categoria.descricao}"></span><br>
-                <a th:href="@{/anime/edit/{id}(id = ${anime.id})}"><span th:text="${#messages.msg('lista.modal.action.editar')}"></span></a>
+                <a th:href="@{/anime/details/{id}(id = ${anime.id})}"><span th:text="${#messages.msg('lista.modal.action.editar')}"></span></a>
                 <span> | </span>
                 <a th:href="@{/anime/delete/{id}(id = ${anime.id})}"><span th:text="${#messages.msg('lista.modal.action.deletar')}"></span></a>
             </p>

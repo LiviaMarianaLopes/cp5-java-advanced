@@ -65,7 +65,7 @@ public class AnimeController {
     public String editAnime(@PathVariable Long id, @Valid @ModelAttribute AnimeRequest animeRequest, BindingResult result, RedirectAttributes redirectAttributes){
        if (result.hasErrors()) {
            redirectAttributes.addFlashAttribute("errors", result.getAllErrors());
-           return "redirect:/anime/details" + id;
+           return "redirect:/anime/details/" + id;
        }
        animeService.updateAnime(id, animeRequest);
        return "redirect:/anime/list";

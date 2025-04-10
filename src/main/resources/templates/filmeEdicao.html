@@ -10,7 +10,8 @@
 <body>
     <div th:replace="~{fragments/header.html :: header}"></div>
     <div>
-        <form method="post "th:action="@{/filme/editar/{id}(id=${idFilme})}" th:object="${filme}">
+        <form method="post" th:action="@{/filme/editar/{id}(id=${idFilme})}" th:object="${filme}" class="row g-3">
+            <input type="hidden" th:field="${idFilme}">
             <h2><span th:text="${#messages.msg('filme.edicao.titulo')}"></span></h2>
             <input type="hidden" th:field="${idFilme}">
             <br>
@@ -27,7 +28,7 @@
                 </tr>
                 <tr>
                     <td><span th:text="${#messages.msg('attr.duracao')}"></span>:</td>
-                    <td><input type="text" th:field="*{duracao}"></td>
+                    <td><input type="text" th:field="*{duracaoMinutos}"></td>
                 </tr>
                 <tr>
                     <td><span th:text="${#messages.msg('attr.categoria')}"></span>:</td>

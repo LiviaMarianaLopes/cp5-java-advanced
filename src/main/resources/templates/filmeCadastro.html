@@ -20,7 +20,7 @@
                     <label for="diretor"><span th:text="${#messages.msg('attr.diretor')}"></span>:</label><input type="text" id="diretor" th:field="*{diretor}">
                 </div>
                 <div>
-                    <label for="duracao"><span th:text="${#messages.msg('attr.duracao')}"></span>:</label><input type="text" id="duracao" th:field="*{duracao}">
+                    <label for="duracao"><span th:text="${#messages.msg('attr.duracao')}"></span>:</label><input type="text" id="duracao" th:field="*{duracaoMinutos}">
                 </div>
                 <div>
                     <label for="categoria"><span th:text="${#messages.msg('attr.categoria')}"></span>:</label>
@@ -36,12 +36,13 @@
                     <button type="submit"><span th:text="${#messages.msg('cadastro.cadastro')}"></span></button>
                 </div>
             </form>
+            <div th:if="${errors}">
+                <ul>
+                    <li th:each="error : ${errors}" th:text="${error.defaultMessage}"></li>
+                </ul>
+            </div>
         </div>
-        <div th:if="${errors}">
-            <ul>
-                <li th:each="error : ${errors}" th:text="${error.defaultMessage}"></li>
-            </ul>
-        </div>
+
     <div th:replace="~{fragments/footer :: footer}"></div>
 </body>
 </html>

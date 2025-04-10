@@ -27,9 +27,10 @@ public class FilmeController {
     }
 
     @PostMapping("/cadastrar")
-    public ModelAndView registerFilme(@Valid FilmeRequest filmeRequest, BindingResult result){
+    public ModelAndView registerFilme(@Valid @ModelAttribute FilmeRequest filmeRequest, BindingResult result) {
         ModelAndView modelAndView = new ModelAndView();
-        if(result.hasErrors()){
+
+        if(result.hasErrors()) {
             modelAndView.setViewName("filmeCadastro");
             modelAndView.addObject("filme", new Filme());
             modelAndView.addObject("errors", result.getAllErrors());
@@ -45,14 +46,14 @@ public class FilmeController {
     public ModelAndView listFilme(){
         ModelAndView mv = new ModelAndView("filmeLista");
         List<Filme> filmes = filmeService.searchFilme();
-        mv.addObject("listaFilme", filmes);
+        mv.addObject("listaFilmes", filmes);
         return mv;
     }
 
     @GetMapping("/edicao/{id}")
     public ModelAndView filmeUpdate(@PathVariable Long id) {
         Filme filme = filmeService.searchFilme(id);
-        if(filme == null) {
+        if (filme == null) {
             return listFilme();
         }
         ModelAndView mv = new ModelAndView("filmeEdicao");
@@ -62,8 +63,8 @@ public class FilmeController {
     }
 
     @PostMapping("/editar/{id}")
-    public String updateFilme(@PathVariable Long id, @Valid @ModelAttribute FilmeRequest filmeRequest, BindingResult result, RedirectAttributes redirectAttributes){
-        if(result.hasErrors()){
+    public  String  updateFilme(@PathVariable Long id, @Valid @ModelAttribute FilmeRequest filmeRequest, BindingResult result, RedirectAttributes redirectAttributes) {
+        if (result.hasErrors()) {
             redirectAttributes.addFlashAttribute("errors", result.getAllErrors());
             return "redirect:/filme/edicao/" + id;
         }
@@ -77,3 +78,4 @@ public class FilmeController {
         return "redirect:/filme/lista";
     }
 }
+

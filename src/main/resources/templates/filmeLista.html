@@ -38,7 +38,7 @@
             <strong><span th:text="${#messages.msg('attr.id')}"></span>:</strong> <span th:text="${filme.id}"></span><br>
             <strong><span th:text="${#messages.msg('attr.titulo')}"></span>:</strong> <span th:text="${filme.titulo}"></span><br>
             <strong><span th:text="${#messages.msg('attr.diretor')}"></span>:</strong> <span th:text="${filme.diretor}"></span><br>
-            <strong><span th:text="${#messages.msg('attr.duracao')}"></span>:</strong> <span th:text="${filme.duracao}"></span><br>
+            <strong><span th:text="${#messages.msg('attr.duracao')}"></span>:</strong> <span th:text="${filme.duracaoMinutos}"></span><br>
             <strong><span th:text="${#messages.msg('attr.categoria')}"></span>:</strong> <span th:text="${filme.categoria.descricao}"></span><br>
             <a th:href="@{/filme/edicao/{id}(id = ${filme.id})}"><span th:text="${#messages.msg('lista.modal.action.editar')}"></span></a>
             <span> | </span>

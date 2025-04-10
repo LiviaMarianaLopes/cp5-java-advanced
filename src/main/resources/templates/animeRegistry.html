@@ -36,12 +36,13 @@
                 <button type="submit"><span th:text="${#messages.msg('cadastro.cadastro')}"></span></button>
             </div>
         </form>
+        <div th:if="${errors}">
+            <ul>
+                <li th:each="error : ${errors}" th:text="${error.defaultMessage}"></li>
+            </ul>
+        </div>
     </div>
-    <div th:if="${errors}">
-        <ul>
-            <li th:each="error : ${errors}" th:text="${error.defaultMessage}"></li>
-        </ul>
-    </div>
+
     <div th:replace="~{fragments/footer :: footer}"></div>
 </body>
 </html>
