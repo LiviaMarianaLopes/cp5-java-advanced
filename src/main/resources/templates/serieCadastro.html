@@ -13,19 +13,19 @@
     <form method="post" th:action="@{cadastrar}" th:object="${serieRequest}">
         <h2><span th:text="${#messages.msg('serie.cadastro.titulo')}"></span></h2>
         <br>
-        <div>
+        <div class="col-md-8">
             <label for="titulo"><span th:text="${#messages.msg('attr.titulo')}"></span>:</label> <input type="text" id="titulo" th:field="*{titulo}">
         </div>
-        <div>
+        <div class="col-md-8">
             <label for="criador"><span th:text="${#messages.msg('attr.criador')}"></span>:</label> <input type="text" id="criador" th:field="*{criador}">
         </div>
-        <div>
+        <div class="col-md-8">
             <label for="temporadas"><span th:text="${#messages.msg('attr.temporadas')}"></span>:</label> <input type="text" id="temporadas" th:field="*{temporadas}">
         </div>
-        <div>
+        <div class="col-md-8">
             <label for="episodiosPorTemporada"><span th:text="${#messages.msg('attr.episodiosPorTemporada')}"></span>:</label> <input type="text" id="episodiosPorTemporada" th:field="*{episodiosPorTemporada}">
         </div>
-        <div>
+        <div class="col-md-8">
             <label for="categoria"><span th:text="${#messages.msg('attr.categoria')}"></span>:</label>
             <select id="categoria" th:field="*{categoria}">
                 <option name="ROMANCE" value="ROMANCE"><span th:text="${#messages.msg('attr.categoria.ROMANCE')}"></span></option>
@@ -35,15 +35,16 @@
                 <option name="FANTASIA" value="FANTASIA"><span th:text="${#messages.msg('attr.categoria.FANTASIA')}"></span></option>
             </select>
         </div>
-        <div>
+        <div class="text-center mt-4">
             <button type="submit"><span th:text="${#messages.msg('cadastro.cadastro')}"></span></button>
         </div>
     </form>
-</div>
-<div th:if="${errors}">
-    <ul>
-        <li th:each="error : ${errors}" th:text="${error.defaultMessage}"></li>
-    </ul>
+
+    <div th:if="${errors}" class="mt-3 alert alert-danger">
+        <ul>
+            <li th:each="error : ${errors}" th:text="${error.defaultMessage}"></li>
+        </ul>
+    </div>
 </div>
 <div th:replace="~{fragments/footer :: footer}"></div>
 </body>

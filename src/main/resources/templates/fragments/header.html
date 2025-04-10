@@ -7,7 +7,7 @@
 <body>
 <div th:fragment="header" class="header">
     <h1><span th:text="${#messages.msg('app.name')}"></span></h1>
-    <nav class="navbar navbar-expand-lg bg-light">
+    <nav class="navbar navbar-expand-lg">
         <div class="navbar-nav">
             <a class="nav-item nav-link" th:href="@{/anime/registry}"><span th:text="${#messages.msg('anime.menu.cadastrar')}"></span></a>
             <a class="nav-item nav-link" th:href="@{/anime/list}"><span th:text="${#messages.msg('anime.menu.lista')}"></span></a>
