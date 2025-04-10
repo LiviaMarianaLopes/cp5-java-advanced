@@ -11,9 +11,9 @@
     <div th:replace="~{fragments/header.html :: header}"></div>
     <h2><span th:text="${#messages.msg('bem.vindo.text')}"></span></h2>
     <h3><span th:text="${#messages.msg('catalogo.text')}"></span></h3>
-    <button type="button" onclick="@{/anime/list}"><span th:text="${#messages.msg('anime.lista.pagina')}"></span></button>
-    <button type="button" th:href="@{/serie/lista}"><span th:text="${#messages.msg('filme.lista.pagina')}"></span></button>
-    <button type="button" th:href="@{/filme/lista}"><span th:text="${#messages.msg('serie.lista.pagina')}"></span></button>
+    <a th:href="@{/filme/lista}"><span th:text="${#messages.msg('filme.lista.pagina')}"></span></a>
+    <a th:href="@{/serie/lista}"><span th:text="${#messages.msg('serie.lista.pagina')}"></span></a>
+    <a th:href="@{/anime/list}"><span th:text="${#messages.msg('anime.lista.pagina')}"></span></a>
     <div th:replace="~{fragments/footer.html :: footer}"></div>
 </body>
 </html>

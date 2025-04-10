@@ -43,9 +43,9 @@ public class FilmeController {
 
     @GetMapping("/lista")
     public ModelAndView listFilme(){
-        ModelAndView mv = new ModelAndView();
+        ModelAndView mv = new ModelAndView("filmeLista");
         List<Filme> filmes = filmeService.searchFilme();
-        mv.addObject("listaFilmes", filmes);
+        mv.addObject("listaFilme", filmes);
         return mv;
     }
 
