@@ -7,7 +7,6 @@ import jakarta.validation.constraints.NotNull;
 import jakarta.validation.constraints.Size;
 import lombok.Data;
 
-@Data
 public class AnimeRequest {
     @NotBlank(message = "{titulo.not.blank}")
     private String titulo;
@@ -18,4 +17,36 @@ public class AnimeRequest {
     private int quantEpisodios;
     @NotNull(message = "{categoria.not.null}")
     private Categoria categoria;
+
+    public String getTitulo() {
+        return titulo;
+    }
+
+    public void setTitulo(String titulo) {
+        this.titulo = titulo;
+    }
+
+    public String getEstudio() {
+        return estudio;
+    }
+
+    public void setEstudio(String estudio) {
+        this.estudio = estudio;
+    }
+
+    public int getQuantEpisodios() {
+        return quantEpisodios;
+    }
+
+    public void setQuantEpisodios(int quantEpisodios) {
+        this.quantEpisodios = quantEpisodios;
+    }
+
+    public Categoria getCategoria() {
+        return categoria;
+    }
+
+    public void setCategoria(Categoria categoria) {
+        this.categoria = categoria;
+    }
 }

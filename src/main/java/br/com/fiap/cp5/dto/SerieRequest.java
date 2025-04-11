@@ -7,7 +7,6 @@ import jakarta.validation.constraints.NotNull;
 import jakarta.validation.constraints.Size;
 import lombok.Data;
 
-@Data
 public class SerieRequest {
     @NotBlank(message = "{titulo.not.blank}")
     private String titulo;
@@ -23,4 +22,43 @@ public class SerieRequest {
     @NotNull(message = "{categoria.not.null}")
     private Categoria categoria;
 
+    public String getTitulo() {
+        return titulo;
+    }
+
+    public void setTitulo(String titulo) {
+        this.titulo = titulo;
+    }
+
+    public String getCriador() {
+        return criador;
+    }
+
+    public void setCriador(String criador) {
+        this.criador = criador;
+    }
+
+    public int getTemporadas() {
+        return temporadas;
+    }
+
+    public void setTemporadas(int temporadas) {
+        this.temporadas = temporadas;
+    }
+
+    public int getEpisodiosPorTemporada() {
+        return episodiosPorTemporada;
+    }
+
+    public void setEpisodiosPorTemporada(int episodiosPorTemporada) {
+        this.episodiosPorTemporada = episodiosPorTemporada;
+    }
+
+    public Categoria getCategoria() {
+        return categoria;
+    }
+
+    public void setCategoria(Categoria categoria) {
+        this.categoria = categoria;
+    }
 }

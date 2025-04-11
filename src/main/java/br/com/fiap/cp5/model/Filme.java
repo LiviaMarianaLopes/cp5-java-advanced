@@ -5,7 +5,6 @@ import lombok.Data;
 
 @Entity
 @Table(name = "tb_filme")
-@Data
 public class Filme {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -20,4 +19,43 @@ public class Filme {
     @Enumerated(EnumType.STRING)
     private Categoria categoria;
 
+    public Long getId() {
+        return id;
+    }
+
+    public void setId(Long id) {
+        this.id = id;
+    }
+
+    public String getTitulo() {
+        return titulo;
+    }
+
+    public void setTitulo(String titulo) {
+        this.titulo = titulo;
+    }
+
+    public String getDiretor() {
+        return diretor;
+    }
+
+    public void setDiretor(String diretor) {
+        this.diretor = diretor;
+    }
+
+    public int getDuracaoMinutos() {
+        return duracaoMinutos;
+    }
+
+    public void setDuracaoMinutos(int duracaoMinutos) {
+        this.duracaoMinutos = duracaoMinutos;
+    }
+
+    public Categoria getCategoria() {
+        return categoria;
+    }
+
+    public void setCategoria(Categoria categoria) {
+        this.categoria = categoria;
+    }
 }

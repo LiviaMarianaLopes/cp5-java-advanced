@@ -6,7 +6,6 @@ import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.NotNull;
 import lombok.Data;
 
-@Data
 public class FilmeRequest {
     @NotBlank(message = "O titulo nao pode ser vazio")
     private String titulo;
@@ -17,4 +16,36 @@ public class FilmeRequest {
     private int duracaoMinutos;
     @NotNull(message = "A categoria nao pode ser vazia")
     private Categoria categoria;
+
+    public String getTitulo() {
+        return titulo;
+    }
+
+    public void setTitulo(String titulo) {
+        this.titulo = titulo;
+    }
+
+    public String getDiretor() {
+        return diretor;
+    }
+
+    public void setDiretor(String diretor) {
+        this.diretor = diretor;
+    }
+
+    public int getDuracaoMinutos() {
+        return duracaoMinutos;
+    }
+
+    public void setDuracaoMinutos(int duracaoMinutos) {
+        this.duracaoMinutos = duracaoMinutos;
+    }
+
+    public Categoria getCategoria() {
+        return categoria;
+    }
+
+    public void setCategoria(Categoria categoria) {
+        this.categoria = categoria;
+    }
 }
